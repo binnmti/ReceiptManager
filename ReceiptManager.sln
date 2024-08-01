@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceiptManager", "ReceiptManager\ReceiptManager\ReceiptManager.csproj", "{6191BD32-C705-4009-B69C-56D90ACD4D0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceiptManager.Client", "ReceiptManager\ReceiptManager.Client\ReceiptManager.Client.csproj", "{46F85759-5BC9-4D59-A0C3-E4119C0FB2C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6191BD32-C705-4009-B69C-56D90ACD4D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6191BD32-C705-4009-B69C-56D90ACD4D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6191BD32-C705-4009-B69C-56D90ACD4D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6191BD32-C705-4009-B69C-56D90ACD4D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F85759-5BC9-4D59-A0C3-E4119C0FB2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F85759-5BC9-4D59-A0C3-E4119C0FB2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F85759-5BC9-4D59-A0C3-E4119C0FB2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F85759-5BC9-4D59-A0C3-E4119C0FB2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {989E1C3A-6B56-4465-842D-5729408BB86C}
+	EndGlobalSection
+EndGlobal
