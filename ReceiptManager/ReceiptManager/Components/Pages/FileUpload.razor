@@ -1,0 +1,27 @@
+﻿@page "/file-upload"
+@using Microsoft.AspNetCore.Components.Forms
+@inject AzureBlobStorageService BlobStorageService
+@inject FormRecognizerService FormRecognizerService
+
+<h3>File Upload</h3>
+
+<InputFile OnChange="HandleSelectedFiles" multiple />
+@if (uploading)
+{
+    <p>Uploading...</p>
+}
+@code {
+    private bool uploading = false;
+    private async Task HandleSelectedFiles(InputFileChangeEventArgs e)
+    {
+        uploading = true;
+        foreach (var file in e.GetMultipleFiles())
+        {
+            var stream = file.OpenReadStream();
+            await BlobStorageService.UploadFileAsync(file.Name, stream);
+            var recognitionResult = await FormRecognizerService.RecognizeImageAsync(file.Name);
+            Console.WriteLine(recognitionResult); // 画像認識結果の表示
+        }
+        uploading = false;
+    }
+}

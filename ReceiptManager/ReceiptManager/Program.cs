@@ -23,6 +23,8 @@ namespace ReceiptManager
             builder.Services.AddScoped<IdentityUserAccessor>();
             builder.Services.AddScoped<IdentityRedirectManager>();
             builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
+            builder.Services.AddSingleton<AzureBlobStorageService>();
+            builder.Services.AddSingleton<FormRecognizerService>();
 
             builder.Services.AddAuthentication(options =>
                 {
