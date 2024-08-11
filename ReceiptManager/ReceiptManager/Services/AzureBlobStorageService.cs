@@ -1,5 +1,4 @@
 ﻿using Azure.Storage.Blobs;
-using Microsoft.Extensions.Configuration;
 
 public class AzureBlobStorageService
 {
@@ -12,7 +11,7 @@ public class AzureBlobStorageService
 
     public async Task UploadFileAsync(string fileName, Stream fileStream)
     {
-        var containerClient = _blobServiceClient.GetBlobContainerClient("your-container-name");
+        var containerClient = _blobServiceClient.GetBlobContainerClient("receipt");
         var blobClient = containerClient.GetBlobClient(fileName);
         await blobClient.UploadAsync(fileStream, overwrite: true);
     }

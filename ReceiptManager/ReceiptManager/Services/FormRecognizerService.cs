@@ -1,23 +1,22 @@
-﻿using Azure.AI.FormRecognizer;
-using Azure.AI.FormRecognizer.Models;
-using Azure;
-using Microsoft.Extensions.Configuration;
+﻿using Azure;
+using Azure.AI.FormRecognizer.DocumentAnalysis;
 
 public class FormRecognizerService
 {
-    private readonly FormRecognizerClient _formRecognizerClient;
+    private readonly DocumentAnalysisClient _dccumentAnalysisClient;
+
 
     public FormRecognizerService(IConfiguration configuration)
     {
         var endpoint = configuration["FormRecognizer:Endpoint"];
         var apiKey = configuration["FormRecognizer:ApiKey"];
-        _formRecognizerClient = new FormRecognizerClient(new Uri(endpoint), new AzureKeyCredential(apiKey));
+        _dccumentAnalysisClient = new DocumentAnalysisClient(new Uri(endpoint), new AzureKeyCredential(apiKey));
     }
 
     public async Task<string> RecognizeImageAsync(string blobName)
     {
-        var uri = new Uri($"https://your-storage-account-name.blob.core.windows.net/your-container-name/{blobName}");
-        var operation = await _formRecognizerClient.StartRecognizeContentFromUriAsync(uri);
+        var uri = new Uri($"https://receiptmanagerstoreage.blob.core.windows.net/receipt/{blobName}");
+        var operation = await _dccumentAnalysisClient.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-layout", uri);
         var result = await operation.WaitForCompletionAsync();
         // 画像認識結果の処理
         return result.Value.ToString();
