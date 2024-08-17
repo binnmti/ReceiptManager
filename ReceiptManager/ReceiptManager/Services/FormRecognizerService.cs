@@ -1,10 +1,10 @@
 ﻿using Azure;
 using Azure.AI.FormRecognizer.DocumentAnalysis;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 public class FormRecognizerService
 {
     private readonly DocumentAnalysisClient _dccumentAnalysisClient;
-
 
     public FormRecognizerService(IConfiguration configuration)
     {

@@ -15,14 +15,26 @@
     private bool uploading = false;
     private async Task HandleSelectedFiles(InputFileChangeEventArgs e)
     {
-        uploading = true;
-        foreach (var file in e.GetMultipleFiles())
+        var file = ((InputFile)e.Value).Files.First();
+        var content = new MultipartFormDataContent();
+        content.Add(new StreamContent(file.OpenReadStream()), "file", file.Name);
+
+        var response = await Http.PostAsync("/api/receipts", content);
+        if (response.IsSuccessStatusCode)
         {
-            var stream = file.OpenReadStream();
-            await BlobStorageService.UploadFileAsync(file.Name, stream);
-            var recognitionResult = await FormRecognizerService.RecognizeImageAsync(file.Name);
-            Console.WriteLine(recognitionResult); // 画像認識結果の表示
+            var receipt = await response.Content.ReadFromJsonAsync<Receipt>();
+            Console.WriteLine($"Uploaded: {receipt.OcrText}");
         }
+
+        // uploading = true;
+        // foreach (var file in e.GetMultipleFiles())
+        // {
+        //     var stream = file.OpenReadStream();
+        //     await BlobStorageService.UploadFileAsync(file.Name, stream);
+        //     var recognitionResult = await FormRecognizerService.RecognizeImageAsync(file.Name);
+        //     Console.WriteLine(recognitionResult); // 画像認識結果の表示
+        // }
+
         uploading = false;
     }
 }
